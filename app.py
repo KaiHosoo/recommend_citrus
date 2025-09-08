@@ -48,8 +48,13 @@ def load_csv(path: str) -> pd.DataFrame:
         raise KeyError(f"必要カラムが足りません: {missing} / 取得={list(df.columns)}")
     for col in FEATURES:
         df[col] = pd.to_numeric(df[col], errors="coerce").clip(1,6)
-    df["season"] = df.get("season","").fillna("").astype(str)
-    df["image_url"] = df.get("image_url","").fillna("").astype(str)
+    if "season" not in df.columns:
+        df["season"] = ""
+    df["season"] = df["season"].fillna("").astype(str)
+
+    if "image_url" not in df.columns:
+        df["image_url"] = ""
+    df["image_url"] = df["image_url"].fillna("").astype(str)
     return df.dropna(subset=FEATURES)
 
 def parse_seasons(cell: str) -> List[str]:
