@@ -8,9 +8,6 @@ from supabase import create_client, Client
 
 st.set_page_config(page_title="柑橘レコメンダ", page_icon="🍊", layout="wide")
 
-st.caption(f"URL(head): {st.secrets.get('SUPABASE_URL','')[:40]}")
-st.caption(f"Anon(head): {st.secrets.get('SUPABASE_ANON_KEY','')[:8]}")
-
 # ---------------- 基本設定 ----------------
 FEATURES = ["brix", "acid", "bitterness", "aroma", "moisture", "texture"]
 ALIASES = {
